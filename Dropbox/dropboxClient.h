@@ -37,9 +37,9 @@
 #define DELETE "delete"
 #define EXIT "exit"
 #define EXIST "exist"
+#define GET_TIME "get_time"
 
 // Protótipos mínimos
-int connect_server(char *host, int port);
 int login(char *username);
 int get_file(char *filename);
 int sync_client(char *username);
@@ -56,6 +56,7 @@ int is_download_command(char *command_buffer);
 int is_upload_command(char *command_buffer);
 int is_get_sync_dir_command(char *command_buffer);
 int is_exit_command(char *command_buffer);
+int is_get_time_command(char *command_buffer);
 int file_copy_to_sync_dir(char* source_file_path, char* dest_file_name);
 int file_remove_from_sync_dir(char* file_name);
 
@@ -65,5 +66,9 @@ int start_sync_monitor();
 int first_sync_local_files(char *user_path);
 void *file_sync_monitor(void *);
 void get_sync_dir_local_path(char *out_user_path);
+void *auto_sync_files(void *);
+
+// Faz uma requisição de hora ao time server na porta + 1
+time_t get_time_server();
 
 #endif /*DROPBOXCLIENT_H*/
